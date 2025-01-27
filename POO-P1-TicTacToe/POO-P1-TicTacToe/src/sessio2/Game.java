@@ -44,6 +44,7 @@ public class Game {
 		}
 		computeWinner();
 		return winner != ' ';
+		
 	}
 	
 	public String boardToString() {
@@ -71,7 +72,7 @@ public class Game {
 	}
 	
 	private void computeWinner() {
-		if (winner != ' ') {
+		if (winner == ' ') {
 			if (board.hasPlayerWon(PLAYER1)) {
 				winner = PLAYER1;
 			} else if (board.hasPlayerWon(PLAYER2)) {

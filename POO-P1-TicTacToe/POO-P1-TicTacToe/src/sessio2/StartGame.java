@@ -87,6 +87,8 @@ public class StartGame {
 					gameEnded = true;
 				}
 				
+				
+				
 			}
 			
 			//TODO: Whatever needs to be done when a game has finished
