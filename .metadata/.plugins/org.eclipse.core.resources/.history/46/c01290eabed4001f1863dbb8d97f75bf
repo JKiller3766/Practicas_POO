@@ -1,0 +1,19 @@
+package sessio2;
+
+public class Board {
+	
+	private final static int SIZE=3; 
+	private static Cell cells[][];
+	
+	public Board() {
+		cells = new Cell[SIZE][SIZE];
+	}
+	
+	public int getNumRows() {return cells.length;}
+
+	//TODO: Add additional private attributes. 
+	
+	//TODO: Add methods as described in the document
+	
+	
+}

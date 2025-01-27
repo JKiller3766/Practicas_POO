@@ -1,0 +1,57 @@
+package p02_Conditionals;
+
+import jconsole.*;
+
+public class Ex_02_HolidayAdvisor {
+	
+	public static void main (String [] args) {
+		JConsole console = new JConsole(80,20);
+		
+		int age;
+		String name;
+		char preference;
+
+		console.println ("HOLIDAY ADVISOR");
+		console.println ("------- -------");
+		console.println ();
+
+		console.print("Please, write your name ");
+		name = console.readLine ();
+		console.print ("Well "+name+" now tell me your age ");
+		age = console.readInt();
+		console.println ("Finally, tell me your preference...");
+		console.print ("...Do you prefer beach (b) or mountain (m)? ");
+		preference = console.readChar();
+
+		
+
+		if (age > 40) {
+			if (preference == 'b') {
+				console.println ();
+				console.print ("My advice is that you go to THE CANARY ISLANDS");
+			} else if (preference == 'm'){
+				console.println ();
+				console.print ("My advice is that you go to SWITZERLAND");
+			} else {
+				console.print ("My advice is that you go to A PSICHOLOGIST to check that brain");
+			}
+		} else {
+			if (preference == 'b') {
+				console.println ();
+				console.print ("My advice is that you go to IBIZA");
+			} else if (preference == 'm'){
+				console.println ();
+				console.print ("My advice is that you go to NEPAL");
+			} else {
+				console.print ("My advice is that you go to A PSICHOLOGIST to check that brain");
+			}
+		}
+		console.println ();
+		console.println ();
+		console.print ("Press any key to exit");
+		console.readKey ();
+		System.exit(0);
+
+	}
+
+}

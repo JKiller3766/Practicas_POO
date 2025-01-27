@@ -1,0 +1,35 @@
+package sessio2;
+
+public class Board {
+
+	private final static int SIZE = 3;
+
+	// TODO: Add additional private attributes.
+
+	// TODO: Add methods as described in the document
+
+	private static Cell cells[][];
+
+	public Board() {
+		cells = new Cell[SIZE][SIZE];
+	}
+
+	public int getNumRows() {
+		return cells.length;
+	}
+
+	public int getNumCols() {
+		return cells[0].length;
+	}
+
+	public char getCellContent(int row, int column) {
+		char cellContent = cells[row][column].getContent();
+
+		return cellContent;
+	}
+	
+	public boolean move (char player, int row, int column) {
+		if (cells[row][column].getContent() == ' ')
+	}
+
+}

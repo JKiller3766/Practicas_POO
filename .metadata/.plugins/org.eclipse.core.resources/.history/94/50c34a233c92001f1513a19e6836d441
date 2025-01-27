@@ -1,0 +1,205 @@
+package exer_02;
+
+import java.awt.Color;
+import java.util.Random;
+import jconsole.JConsole;
+
+public class ParityMatters {
+
+	public static void main(String[] args) {
+		int bet;
+		int dieOne = 0, dieTwo = 0, dieThree = 0;
+		char modality;
+
+		// need more variables? Declare them here.
+
+		JConsole console = new JConsole(80, 25);
+
+		// Random alea = new Random();
+		Random alea = new ChargedDie(console);
+
+		console.println("----------------");
+		console.println(" PARITY MATTERS ");
+		console.println("----------------");
+
+		console.print("Hi gambler. Please enter your bet: ");
+		console.setForegroundColor(Color.GREEN);
+		bet = console.readInt();
+		console.resetColor();
+		console.println();
+
+		console.print("Good! Now press any key to roll your three dice ");
+		console.readKey();
+
+		/* COMPLETE 1: roll dice here */
+		dieOne = alea.nextInt(1, 7);
+		dieTwo = alea.nextInt(1, 7);
+		dieThree = alea.nextInt(1, 7);
+
+		console.println("\n");
+		console.setForegroundColor(Color.CYAN);
+		console.println("\t d-1 \t d-2 \t d-3");
+		console.println("\t --- \t --- \t ---");
+		console.setForegroundColor(Color.MAGENTA);
+		console.println("\t  " + dieOne + " \t   " + dieTwo + " \t   " + dieThree);
+		console.resetColor();
+		console.println();
+
+		/* COMPLETE 2 ... */
+
+		if (dieOne % 2 == dieTwo % 2 && dieOne % 2 == dieThree % 2) {
+			console.print("SUPER! You got a ");
+			console.setForegroundColor(Color.yellow);
+			console.println("PARITY STRIKE");
+			console.resetColor();
+			bet *= 4;
+			console.println("You win 4 times your bet: " + bet + " bucks.");
+		} else if (dieOne + dieTwo + dieThree < 9) {
+			console.print("What a PITY. Your combination is ");
+			console.setForegroundColor(Color.red);
+			console.println("OFF THE MIN");
+			console.resetColor();
+			console.println("You loose your money");
+		} else if (dieOne + dieTwo + dieThree == 9) {
+			console.print("EXCELLENT! You got a ");
+			console.setForegroundColor(Color.yellow);
+			console.println("LOVELY NINE");
+			console.resetColor();
+			bet *= 3;
+			console.println("You win 3 times your bet: " + bet + " bucks.");
+		} else {
+			console.print("Choose modality. E or e for EVEN. Any other key for ODD ");
+			console.setForegroundColor(Color.green);
+			modality = console.readChar();
+			console.resetColor();
+
+			if (modality == 'e' || modality == 'E') {
+				console.println();
+				console.print("Modality is EVEN. Now press any key to roll two of your three dice");
+				console.readKey();
+
+				dieOne = alea.nextInt(1, 7);
+				dieTwo = alea.nextInt(1, 7);
+
+				console.println("\n");
+				console.setForegroundColor(Color.CYAN);
+				console.println("\t d-1 \t d-2");
+				console.println("\t --- \t ---");
+				console.setForegroundColor(Color.MAGENTA);
+				console.println("\t  " + dieOne + " \t   " + dieTwo);
+				console.resetColor();
+				console.println();
+
+				if ((dieOne == dieTwo) && (dieOne == 1 || dieOne == 6)) {
+					console.print("NICE! You got ");
+					console.setForegroundColor(Color.yellow);
+					console.println("Two or Twelve. LOVELY DOUBLE");
+					console.resetColor();
+					bet *= 2;
+					console.println("You win 2 times your bet: " + bet + " bucks.");
+				} else if ((dieOne + dieTwo) % 2 == 0) {
+					console.print("WELL DONE! You got an ");
+					console.setForegroundColor(Color.yellow);
+					console.println("Even sum. FAIR RESULT");
+					console.resetColor();
+					console.println("You get your money back: " + bet + " bucks.");
+				} else {
+					console.print("BAD LUCK! ");
+					console.setForegroundColor(Color.red);
+					console.println("YOU LOSE");
+					console.resetColor();
+					console.println("Say bye bye to your " + bet + " bucks.");
+				}
+			} else {
+
+				console.println();
+				console.print("Modality is ODD. Now press any key to roll two of your three dice");
+				console.readKey();
+
+				dieOne = alea.nextInt(1, 7);
+				dieTwo = alea.nextInt(1, 7);
+
+				console.println("\n");
+				console.setForegroundColor(Color.CYAN);
+				console.println("\t d-1 \t d-2");
+				console.println("\t --- \t ---");
+				console.setForegroundColor(Color.MAGENTA);
+				console.println("\t  " + dieOne + " \t   " + dieTwo);
+				console.resetColor();
+				console.println();
+
+				if (dieOne + dieTwo == 7 || dieOne + dieTwo == 11) {
+					console.print("BEAUTIFUL! You got ");
+					console.setForegroundColor(Color.yellow);
+					console.println("Seven or eleven. SEVEN-ELEVEN ODDITY");
+					console.resetColor();
+					bet *= 3;
+					console.println("You win 3 times your bet: " + bet + " bucks");
+				} else {
+					console.print("BAD LUCK! ");
+					console.setForegroundColor(Color.red);
+					console.println("YOU LOSE");
+					console.resetColor();
+					console.println("Say bye bye to your " + bet + " bucks.");
+
+				}
+
+			}
+
+		}
+
+		// program finishes here
+		console.setCursorPosition(0, console.getRows() - 1);
+		console.print("Come back soon! Press any key to exit");
+		console.readKey();
+		System.exit(0);
+	}
+
+}
+
+//do not modify this code.
+class ChargedDie extends Random {
+
+	private static String[] seqs = { "224", // (1) parity strike
+			"133", // (2) parity strike
+			"161", // (3) less than nine (lose)
+			"324", // (4) lovely nine
+			"45111", // (5) lovely double (playing even)
+			"34566", // (6) lovely double (playing even)
+			"45613", // (7) even sum (playing even)
+			"36625", // (8) lose (playing even)
+			"43556", // (9) seven-eleven (playing odd)
+			"35623", // (10) lose (playing odd)
+			"333" // (11) this is not lovely nine. This is parity strike
+
+	};
+
+	private int pos = 0;
+	private String sequence;
+
+	public ChargedDie(JConsole console) {
+		int seqNum;
+		console.print("Enter sequence>");
+		console.setForegroundColor(Color.GREEN);
+		seqNum = console.readInt();
+		console.resetColor();
+		console.clear();
+
+		sequence = seqs[seqNum - 1];
+	}
+
+	public int nextInt(int lower, int upper) {
+		int value;
+
+		value = Integer.parseInt(sequence.substring(pos, pos + 1));
+
+		pos = (pos + 1) % sequence.length();
+		return value;
+	}
+
+	public int nextInt(int upper) {
+
+		return nextInt(1, upper) - 1;
+	}
+
+} // ChargedDie ends here

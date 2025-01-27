@@ -1,0 +1,182 @@
+package sessio2;
+
+import java.awt.Color;
+import java.awt.Toolkit;
+
+import jconsole.JConsole;
+
+public class StartGame {
+	
+	public static void main (String []args) {
+		
+		//Two consoles, AVOID CHANGING
+		JConsole gameConsole = new JConsole(30,10);
+		JConsole userInput = new JConsole(60,15);
+		
+		//Screen size, AVOID CHANGING
+		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+		int halfWidthGame = (screenWidth)/4;
+		int halfHeightPlayer = (screenHeight)/2;
+		
+		//Variables
+		boolean gameEnded;
+		boolean exit;
+
+		
+		
+		//Additional vars
+		//TODO: Add more variables here if you need them
+		Game currentGame = new Game();
+		int [] coordinates = new int[2];
+		//Console positioning, AVOID CHANGING
+		gameConsole.setLocation(halfWidthGame,10);
+		userInput.setLocation(halfWidthGame,halfHeightPlayer);
+		
+		gameConsole.setCursorVisible(false);
+
+		//TODO: Show main menu
+		//TODO: We initialize the variables with some dummy values, feel free to change them if you need to
+		exit = false;
+		gameEnded = false;
+		
+		while(!exit) {
+			//Game begins
+			
+			//TODO: Create the game
+			if (showMenuAndSelectOption(userInput) == 1) {
+				currentGame = new Game();
+				gameEnded = false;
+			} else {
+				exit = true;
+			}
+			
+			
+			//TODO: Show current board 
+			
+			gameConsole.print(currentGame.boardToString());
+			
+			while(!gameEnded) {
+				//TODO: Interact with user and make move
+				
+				
+				userInput.println("New coordinates");
+				userInput.println("---------------");
+
+				coordinates = getAndValidateCoordinates(userInput, currentGame.getBoardRows(), currentGame.getBoardCols());
+				userInput.println();
+				
+				
+				
+				while (!currentGame.move(coordinates[0], coordinates[1])) {
+					userInput.setForegroundColor(Color.RED);
+					userInput.println("Cell already occupied. You need to enter another coordinate");
+					userInput.resetColor();
+					userInput.println("New coordinates");
+					userInput.println("---------------");
+					coordinates = getAndValidateCoordinates(userInput, currentGame.getBoardRows(), currentGame.getBoardCols());
+					userInput.println();
+				}
+				
+				gameConsole.clear();
+				gameConsole.print(currentGame.boardToString());
+				
+				if(currentGame.hasGameEnded()) {
+					currentGame.getEndMessage();
+					gameEnded = true;
+				}
+				
+			}
+			
+			//TODO: Whatever needs to be done when a game has finished
+			
+			//TODO: Do not forget that the user should be able to play a new game when another game has ended
+			
+		}
+		
+		userInput.setCursorPosition(0, userInput.getRows()-1);
+		userInput.print("Press any key to exit...");
+		userInput.readKey();
+		System.exit(0);
+		
+	}
+	
+	
+	//Private static procedures below. Some of them return dummy values, make sure to change them as appropriate.
+	
+	/**
+	 * Shows main menu and returns option selected by user
+	 * @param console
+	 * @return
+	 */
+	private static int showMenuAndSelectOption(JConsole console) {
+		/* TODO: Complete */
+
+		int selection;
+
+		console.println("Select option");
+		console.println("1. New game");
+		console.println("2. Exit");
+
+		console.setForegroundColor(Color.GREEN);
+		selection = console.readInt();
+		console.resetColor();
+
+		while (!(selection > 0 && selection < 3)) {
+			console.setForegroundColor(Color.RED);
+			console.println("Menu option must be between 1 (New Game) and 2 (Exit). Reenter your selection: ");
+			console.resetColor();
+			console.setForegroundColor(Color.GREEN);
+			selection = console.readInt();
+			console.resetColor();
+		}
+
+		return selection;
+
+		// return -1;
+	}
+
+	
+	/**
+	 * Interacts with user to obtain some valid (within the given parameters) coordinates.
+	 * @param console
+	 * @param nRows
+	 * @param nCols
+	 * @return
+	 */
+	private static int[] getAndValidateCoordinates(JConsole console, int nRows, int nCols) {
+		/* TODO: Complete */
+
+		int coordinates[] = new int[2];
+
+		console.print("Insert row number [0, " + (nRows - 1) + "]: ");
+		console.setForegroundColor(Color.GREEN);
+		coordinates[0] = console.readInt();
+		console.resetColor();
+
+		while (coordinates[0] < 0 || coordinates[0] > nRows - 1) {
+			console.setForegroundColor(Color.RED);
+			console.print("Vaule must be between [0, " + (nRows - 1) + "]. Insert new value: ");
+			console.setForegroundColor(Color.GREEN);
+			coordinates[0] = console.readInt();
+			console.resetColor();
+
+		}
+
+		console.print("Insert column number [0, " + (nCols - 1) + "]: ");
+		console.setForegroundColor(Color.GREEN);
+		coordinates[1] = console.readInt();
+		console.resetColor();
+
+		while (coordinates[1] < 0 || coordinates[1] > nCols - 1) {
+			console.setForegroundColor(Color.RED);
+			console.print("Vaule must be between [0, " + (nCols - 1) + "]. Insert new value: ");
+			console.setForegroundColor(Color.GREEN);
+			coordinates[1] = console.readInt();
+			console.resetColor();
+		}
+
+		return coordinates;
+	}
+
+}

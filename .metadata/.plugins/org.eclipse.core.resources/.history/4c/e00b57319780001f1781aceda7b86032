@@ -1,0 +1,33 @@
+package p01_FirstSteps;
+
+import jconsole.JConsole;
+
+public class Exer_10 {
+	public static void main(String[] args) {
+		int age;
+
+		JConsole console = new JConsole(80, 20);
+
+		console.println("AGE PLAY");
+		console.println("--- ----");
+
+		console.print("Hi user! Please tell me your age: ");
+		age = console.readInt();
+		console.println();
+
+		console.println("User, today you are " + age + " but in 10 years you`ll be " + (age + 10));
+		console.println(" and also...");
+		console.println("in 20 years you`ll be " + (age + 20));
+		console.println();
+
+		console.println("Twice your age is " + (age * 2));
+		console.println("Three times your age is " + (age * 3));
+		console.println("Half your age is " + (age / 2));
+		console.println();
+
+		console.println("Press any key to exit...");
+		console.readKey();
+		System.exit(0);
+
+	}
+}

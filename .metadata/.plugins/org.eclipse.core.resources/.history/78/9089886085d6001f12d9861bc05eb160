@@ -1,0 +1,23 @@
+
+	
+	
+	private static boolean hasPlayerWon(char[][] board, char player) {
+		boolean hasPlayerWon = false;
+		
+		switch (hasPlayerWon) {
+		case false;
+			hasPlayerWon = funcion;
+			break;
+		case false;
+			hasPlayerWon = funcion;
+			break;
+		case false;
+			hasPlayerWon = funcion;
+			break;
+		case false;
+			hasPlayerWon = funcion;
+			break;
+		}
+
+		return hasPlayerWon;
+	}

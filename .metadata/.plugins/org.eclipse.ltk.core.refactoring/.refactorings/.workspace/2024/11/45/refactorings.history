@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;PRJ_PRAC_4_F24_STU&apos; to &apos;PRJ_PRAC_4_CALVEIRO_TREITL_LUCA_NICOLAS&apos;&#x0D;&#x0A;- Original element: &apos;PRJ_PRAC_4_F24_STU&apos;&#x0D;&#x0A;- Renamed element: &apos;PRJ_PRAC_4_F24_STU&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;PRJ_PRAC_4_F24_STU&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=PRJ_PRAC_4_F24_STU" name="PRJ_PRAC_4_CALVEIRO_TREITL_LUCA_NICOLAS" references="true" stamp="1731105737755" version="1.0"/>
+</session>

@@ -1,0 +1,69 @@
+package sessio2;
+
+public class Game {
+	
+	private Board board = new Board();
+	private char winner;
+	private char currentPlayer;
+	private static char PLAYER1 = 'X';
+	private static char PLAYER2 = 'O';
+	
+	//TODO: Add attributes as described in the document
+	
+	//TODO: Add methods
+	
+	public Game() {
+		currentPlayer = PLAYER1;
+		winner = ' ';
+	}
+	
+	public int getBoardRows() {
+		return board.getNumRows();
+	}
+	
+	public int getBoardCols() {
+		return board.getNumCols();
+	}
+	
+	public boolean move(int x, int y) {
+		board.getBoard();
+		if (board.move(currentPlayer, x, y)) {
+			Cell [][] asd = new Cell[3][3]; 
+			asd = board.getBoard();
+			if(currentPlayer == PLAYER1) {
+				currentPlayer = PLAYER2;
+			} else {
+				currentPlayer = PLAYER1;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean hasGameEnded() {
+		computeWinner();
+		return winner == currentPlayer;
+	}
+	
+	public String boardToString () {
+		return board.boardToString();
+	}
+	
+	
+	
+	public String getEndMessage() {
+		if (winner == PLAYER1) {
+			return "Player 1 wins the game!";
+		} else if (winner == PLAYER2) {
+			return "Player 2 wins the game!";
+		} else {
+			return "TIE! No one has won the game!";
+		}
+	}
+	
+	private void computeWinner() {
+		if (board.hasPlayerWon(currentPlayer)) {
+			winner = currentPlayer;
+		}
+	}
+}

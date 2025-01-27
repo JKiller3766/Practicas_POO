@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="searchhistory">
+		<item value="addMar"/>
+		<item value="board"/>
+		<item value="finalResult"/>
+		<item value="boolea"/>
+		<item value="boolean"/>
+		<item value="board.length"/>
+		<item value="columna"/>
+		<item value="fila"/>
+		<item value="show"/>
+	</list>
+	<list key="replacehistory">
+		<item value="cells"/>
+		<item value="hasPlayerWon"/>
+		<item value="size"/>
+		<item value="j"/>
+		<item value="i"/>
+	</list>
+</section>
