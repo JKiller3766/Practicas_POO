@@ -51,12 +51,13 @@ public class TicTacToeGame {
 
 			if (selection == 1) {
 				gameEnded = false;
+				initializeBoard(board);
+				showBoard(gameConsole, board);
 			} else {
 				exit = true;
 			}
 
-			initializeBoard(board);
-			showBoard(gameConsole, board);
+			
 
 			while (!gameEnded) {
 

@@ -47,14 +47,15 @@ public class StartGame {
 			if (showMenuAndSelectOption(userInput) == 1) {
 				currentGame = new Game();
 				gameEnded = false;
+				gameConsole.clear();
+				gameConsole.print(currentGame.boardToString());
 			} else {
 				exit = true;
 			}
 			
 			
 			//TODO: Show current board 
-			gameConsole.clear();
-			gameConsole.print(currentGame.boardToString());
+			
 			
 			while(!gameEnded) {
 				//TODO: Interact with user and make move
