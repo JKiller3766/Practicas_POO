@@ -51,6 +51,7 @@ public class TicTacToeGame {
 
 			if (selection == 1) {
 				gameEnded = false;
+				gameConsole.clear();
 				initializeBoard(board);
 				showBoard(gameConsole, board);
 			} else {
