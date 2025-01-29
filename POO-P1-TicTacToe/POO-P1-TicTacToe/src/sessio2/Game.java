@@ -39,10 +39,10 @@ public class Game {
 	}
 	
 	public boolean hasGameEnded() {
+		computeWinner();
 		if (board.isFull()) {
 			return true;
 		}
-		computeWinner();
 		return winner != ' ';
 		
 	}
