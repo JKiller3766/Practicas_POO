@@ -55,7 +55,7 @@ public class StartGame {
 			
 			
 			//TODO: Show current board 
-			
+			 nb b bbbb 
 			
 			while(!gameEnded) {
 				//TODO: Interact with user and make move
