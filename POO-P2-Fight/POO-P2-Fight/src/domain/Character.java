@@ -23,6 +23,7 @@ public abstract class Character {
 	
 	public abstract boolean attack(Character enemy);
 	
+	
 	public boolean takeDamage(int damage) {
 		Random alea = new Random();	
 		int dodgeValue = alea.nextInt(0, 100);
