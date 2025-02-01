@@ -29,24 +29,35 @@ public abstract class Character {
 		int dodgeValue = alea.nextInt(0, 100);
 		
 		if (dodgeValue <= dodge) {
-			health -= damage;
+			if (health - damage < 0) {
+				health = 0;
+			} else {
+				health -= damage;
+			}
 			return true;
 		}
 		return false;
 	}
 	
+	public boolean isAlive() {
+		if (health > 0) {
+			return true;
+		}
+		
+		return false;
+	}
 	
+	public String getName() {return name;}
 	
+	public int getHealth() {return health;}	
 	
+	public String toString() {
+		return " | Name: " + name + " | Health " + health + " | Dodge " + dodge + " |";
+	}
 	
+	public abstract String getCharactersClass();
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String getNameAndClass() {
+		return "Name " + name + " | Class: " + getCharactersClass();
+	}
 }

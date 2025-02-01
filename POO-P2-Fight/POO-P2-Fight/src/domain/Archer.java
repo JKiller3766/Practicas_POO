@@ -23,7 +23,10 @@ public class Archer extends Character {
 	}
 	
 	public String toString() {
-		return "ARCHER | Name: " + getName() + " | Health " + getHealth() + " | Dodge = " + super.dodge + " | Accuracy: " + accuracy + " | Arrow damage: " + arrowDamage;
+		return "ARCHER  " + super.toString() +  " Accuracy: " + accuracy + " | Arrow damage: " + arrowDamage;
 	}
 	
+	public String getCharactersClass() {
+		return "Class: ARCHER";  
+	}
 }

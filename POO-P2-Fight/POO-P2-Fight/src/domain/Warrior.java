@@ -1,5 +1,5 @@
 package domain;
 
-public class Warrior {
+public class Warrior extends Character {
 	private int strengh;
 }
