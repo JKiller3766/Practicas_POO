@@ -1,15 +1,15 @@
 package domain;
 
 public class Warrior extends Character {
-	private int strengh;
+	private int strength;
 	
-	public Warrior(String name, int health, int strengh) {
+	public Warrior(String name, int health, int strength) {
 		super(name, health);
-		this.strengh = strengh;
+		this.strength = strength;
 	}
 	
 	public boolean attack(Character enemy) {
-		return takeDamage(this.strengh);
+		return takeDamage(this.strength);
 	}
 	
 	public String toString() {
