@@ -7,7 +7,7 @@ public class JugadorDeLOL {
 	private String rango;
 	private int añosSinCoito;
 	
-	public JugadorDeLOL(String nom, int añosDesdeSuNacimiento, String rank, int añosSinAfecto) {
+	public JugadorDeLOL(String nom, int añosDesdeSuNacimiento, String rank) {
 		nombre = nom;
 		edad = añosDesdeSuNacimiento;
 		rango = rank;
@@ -30,12 +30,6 @@ public class JugadorDeLOL {
 	
 	public void setRango(String rank) {
 		rango = rank;
-	}
-	
-	public int TiempoSinBañarse() {
-		int tiempoSinBañarseEnDias /*= Formula entre edad y rango..0*/;
-		
-		return tiempoSinBañarseEnDias;
 	}
 	
 }
