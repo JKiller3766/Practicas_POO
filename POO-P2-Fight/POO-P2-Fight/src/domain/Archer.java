@@ -19,7 +19,7 @@ public class Archer extends Character {
 		if (shot <= accuracy) {
 			return false;
 		}
-		return takeDamage(arrowDamage);
+		return enemy.takeDamage(arrowDamage);
 	}
 	
 	public String toString() {
