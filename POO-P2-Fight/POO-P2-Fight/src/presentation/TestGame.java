@@ -58,12 +58,6 @@ public class TestGame {
 			while (!currentBattleHasEnded) {
 				currentGame.performAttack();
 				currentBattleHasEnded = currentGame.hasBattleEnded();
-				do {
-					changeAttacker = attacker;
-					attacker = defender;
-					defender = changeAttacker;
-				} while (!currentGame.selectFighters(attacker, defender) && !currentBattleHasEnded);
-
 			} // Battle has ended
 
 		}
@@ -127,12 +121,6 @@ public class TestGame {
 			while (!currentBattleHasEnded) {
 				currentGame.performAttack();
 				currentBattleHasEnded = currentGame.hasBattleEnded();
-				do {
-					changeAttacker = attacker;
-					attacker = defender;
-					defender = changeAttacker;
-				} while (!currentGame.selectFighters(attacker, defender) && !currentBattleHasEnded);
-
 			}
 // Battle has ended
 		}

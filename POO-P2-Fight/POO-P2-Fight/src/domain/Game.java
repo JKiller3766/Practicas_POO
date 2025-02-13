@@ -31,11 +31,15 @@ public class Game {
 
 	public boolean performAttack() {
 		boolean attack = currentAttacker.attack(currentDefender);
-
+		Character changeAttacker;
+		
 		if (attack) {
 			if (hasBattleEnded()) {
 				checkAndSetWinner();
 			}
+			changeAttacker = currentAttacker;
+			currentAttacker = currentDefender;
+			currentAttacker = changeAttacker;
 		}
 		return attack;
 	}

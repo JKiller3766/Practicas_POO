@@ -14,17 +14,24 @@ public class SurvivorGame extends Game {
 	}
 
 	protected void checkAndSetWinner() {
-		
 		int defenderPosition;
 		if (!currentDefender.isAlive()) {
 			nextAvailableSlot--;
 			defenderPosition = findCharactersPosition(currentDefender);
-			if (defenderPosition == nextAvailableSlot) {
-				characters[nextAvailableSlot] = null;
-			} else {
-				
-			}
-		} else {
+			if (nextAvailableSlot > 0) {
+				if (defenderPosition == nextAvailableSlot) {
+					characters[nextAvailableSlot] = null;
+				} else {
+					if (defenderPosition != -1) {
+						characters[defenderPosition] = characters[nextAvailableSlot];
+						characters[nextAvailableSlot] = null;
+					}
+						
+				}
+				if (nextAvailableSlot == 1) {
+					winner = currentAttacker;
+				}
+			} 
 			
 		}
 	}
@@ -32,8 +39,10 @@ public class SurvivorGame extends Game {
 	protected int findCharactersPosition(Character character) {
 		int characterIndex = -1;
 
-		for (int i = 0; i < characters.length || characterIndex != -1; i++) {
-			if (character.equals(characters[i])) {
+		for (int i = 0; i < characters.length && characterIndex == -1; i++) {
+			Character c = characters[i];
+			
+			if (character.equals(c)) {
 				characterIndex = i;
 			}
 		}
