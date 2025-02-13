@@ -13,8 +13,7 @@ public class TestGame {
 		// "Standard" game
 		// **************
 		Game currentGame;
-		int attacker = -1, defender = -1, changeAttacker;
-		boolean currentBattleHasEnded = true;
+		int attacker = -1, defender = -1;
 		Random alea = new Random();
 
 		currentGame = new Game(3);
@@ -26,13 +25,13 @@ public class TestGame {
 		System.out.println("-------------");
 		// Generate random stats for warrior
 		// Add warrior to game, use Game's provided function
-		currentGame.createWarrior("TOMATE", alea.nextInt(1, 101), alea.nextInt(11, 101));
+		currentGame.createWarrior("TOMATE", alea.nextInt(1, 41), alea.nextInt(11, 101));
 		// Generate random stats for mage
 		// Add mage to game
-		currentGame.createMage("LECHUGA", alea.nextInt(1, 101), alea.nextInt(61, 101), alea.nextInt(11, 101));
+		currentGame.createMage("LECHUGA", alea.nextInt(1, 41), alea.nextInt(61, 101), alea.nextInt(11, 101));
 		// Generate random stats for archer
 		// Add archer to game
-		currentGame.createArcher("ZANAHORIA", alea.nextInt(1, 101), alea.nextInt(31, 101), alea.nextInt(6, 101));
+		currentGame.createArcher("ZANAHORIA", alea.nextInt(1, 41), alea.nextInt(31, 101), alea.nextInt(6, 101));
 
 		// Show info, inform user beginning of standard game
 		System.out.println("-------------");
@@ -42,22 +41,17 @@ public class TestGame {
 		// Simulate combat (DO NOT USE while(true))
 		while (!currentGame.hasGameEnded()) {
 			// Select fighters randomly, they have to be alive
-			if (currentBattleHasEnded) {
 				do {
 					do {
 						attacker = alea.nextInt(0, 3);
 						defender = alea.nextInt(0, 3);
 					} while (attacker == defender);
-					currentBattleHasEnded = false;
 				} while (!currentGame.selectFighters(attacker, defender));
-
-			}
 
 			// Simulate battle until it ends
 
-			while (!currentBattleHasEnded) {
+			while (!currentGame.hasBattleEnded()) {
 				currentGame.performAttack();
-				currentBattleHasEnded = currentGame.hasBattleEnded();
 			} // Battle has ended
 
 		}
@@ -102,25 +96,19 @@ public class TestGame {
 		System.out.println("-------------");
 		System.out.println(currentGame.charactersAndStatus());
 
-		currentBattleHasEnded = true;
 
 // Simulate combat (DO NOT USE while(true))
 		while (!currentGame.hasGameEnded()) {
 // Select fighters randomly, they have to be alive
-			if (currentBattleHasEnded) {
 				do {
 					do {
 						attacker = alea.nextInt(0, 3);
 						defender = alea.nextInt(0, 3);
 					} while (attacker == defender);
-					currentBattleHasEnded = false;
 				} while (!currentGame.selectFighters(attacker, defender));
-
-			}
 // Simulate battle until it ends
-			while (!currentBattleHasEnded) {
+			while (!currentGame.hasBattleEnded()) {
 				currentGame.performAttack();
-				currentBattleHasEnded = currentGame.hasBattleEnded();
 			}
 // Battle has ended
 		}

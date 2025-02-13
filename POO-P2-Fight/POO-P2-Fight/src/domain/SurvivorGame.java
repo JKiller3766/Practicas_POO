@@ -19,14 +19,11 @@ public class SurvivorGame extends Game {
 			nextAvailableSlot--;
 			defenderPosition = findCharactersPosition(currentDefender);
 			if (nextAvailableSlot > 0) {
-				if (defenderPosition == nextAvailableSlot) {
-					characters[nextAvailableSlot] = null;
-				} else {
+				if (!(defenderPosition == nextAvailableSlot)) {
 					if (defenderPosition != -1) {
 						characters[defenderPosition] = characters[nextAvailableSlot];
-						characters[nextAvailableSlot] = null;
+						characters[nextAvailableSlot] = currentDefender;
 					}
-
 				}
 				if (nextAvailableSlot == 1) {
 					winner = currentAttacker;
@@ -40,9 +37,7 @@ public class SurvivorGame extends Game {
 		int characterIndex = -1;
 
 		for (int i = 0; i < characters.length && characterIndex == -1; i++) {
-			Character c = characters[i];
-
-			if (character.equals(c)) {
+			if (character.equals(characters[i])) {
 				characterIndex = i;
 			}
 		}

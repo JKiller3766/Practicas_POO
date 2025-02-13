@@ -62,6 +62,6 @@ public abstract class Character {
 	public abstract String getCharactersClass();
 
 	public String getNameAndClass() {
-		return "Name " + name + " | Class: " + getCharactersClass();
+		return "Name " + name + " | " + getCharactersClass();
 	}
 }

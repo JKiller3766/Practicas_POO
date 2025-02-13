@@ -106,8 +106,11 @@ public class Game {
 		if (nextAvailableSlot < characters.length) {
 			characters[nextAvailableSlot] = character;
 			nextAvailableSlot++;
-			return true;
+			return true;	
 		}
 		return false;
 	}
 }
+
+
+

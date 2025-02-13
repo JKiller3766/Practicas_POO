@@ -51,10 +51,10 @@ public class StartGame {
 		}
 
 		// To create a standard game
-		currentGame = new Game(numChars);
+		//currentGame = new Game(numChars);
 
 		// To create a survivor-only game
-		// currentGame = new SurvivorGame(numChars);
+		currentGame = new SurvivorGame(numChars);
 
 		beginGame = false;
 		addedChars = 0;
