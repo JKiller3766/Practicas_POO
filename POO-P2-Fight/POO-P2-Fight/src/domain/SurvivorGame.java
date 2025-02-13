@@ -26,13 +26,13 @@ public class SurvivorGame extends Game {
 						characters[defenderPosition] = characters[nextAvailableSlot];
 						characters[nextAvailableSlot] = null;
 					}
-						
+
 				}
 				if (nextAvailableSlot == 1) {
 					winner = currentAttacker;
 				}
-			} 
-			
+			}
+
 		}
 	}
 
@@ -41,7 +41,7 @@ public class SurvivorGame extends Game {
 
 		for (int i = 0; i < characters.length && characterIndex == -1; i++) {
 			Character c = characters[i];
-			
+
 			if (character.equals(c)) {
 				characterIndex = i;
 			}
