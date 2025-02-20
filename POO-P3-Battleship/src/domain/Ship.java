@@ -41,10 +41,26 @@ public class Ship implements Comparable {
 		return ShipInfo;
 	}
 	public boolean equals(Object ship) {
-		if (ship instanceof Ship && ( Ship(ship) ) ) {
-
-			
+		if (ship instanceof Ship) {
+			if(ship.equals(shipType)) { // posible error de ejecucion
+				return true;
+			}
 		}
+		return false;
+	}
+	public int compareTo(Object possibleShip) {
+		if(possibleShip instanceof Ship) {
+			if(shipType.getSize() == ((Ship)possibleShip).getSize()) {
+				return 0;
+			}
+			else if(shipType.getSize() > ((Ship)possibleShip).getSize()) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		}
+		return 10; // editar mas adelante
 	}
 	
 
