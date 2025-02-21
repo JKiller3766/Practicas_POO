@@ -25,13 +25,12 @@ public abstract class Cell {
 			return false;
 		}
 		else {
+			hit = true;
 			if(isEmpty()){
-				hit = true;
 				return false;
 			}
 			else {
 				increaseNumShots();
-				hit = true;
 				return true;
 				
 			}
