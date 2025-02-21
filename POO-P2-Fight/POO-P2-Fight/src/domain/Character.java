@@ -28,7 +28,7 @@ public abstract class Character {
 		Random alea = new Random();
 		int dodgeValue = alea.nextInt(0, 100);
 
-		if (dodgeValue <= dodge) {
+		if (dodgeValue >= dodge) {
 			if (health - damage < 0) {
 				health = 0;
 			} else {
