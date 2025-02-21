@@ -7,7 +7,7 @@ public abstract class Cell {
 		hit = false;
 	}
 	protected void increaseNumShots() {}
-	public boolean getHit() {
+	public boolean hasBeenHit() {
 		return hit;
 	}
 	public abstract boolean isEmpty();
@@ -21,6 +21,20 @@ public abstract class Cell {
 		return null;
 	}
 	public boolean shoot() {
-		
+		if (hit) {
+			return false;
+		}
+		else {
+			if(isEmpty()){
+				hit = true;
+				return false;
+			}
+			else {
+				increaseNumShots();
+				hit = true;
+				return true;
+				
+			}
+		}
 	}
 }
