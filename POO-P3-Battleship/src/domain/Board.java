@@ -1,10 +1,10 @@
 package domain;
 
-public class Board {
+public class Board implements IBoard{
 	private Cell [][] cells;
 	
 	public Board(int rows, int cols, ShipType [] ships, int [] numOfShips) {
-		cells = new EmptyCell [rows][cols];
+		cells = new Cell [rows][cols];
 		createEmptyBoard();
 		addShipsToBoard(ships, numOfShips);
 	}
@@ -30,7 +30,7 @@ public class Board {
 	public int getRows() {
 		return cells.length;
 	}
-	public int getCols() {
+	public int getColumns() {
 		return cells[0].length;
 	}
 	public boolean hasCellBeenHit(int row, int col) {
