@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Random;
+
 public class Board implements IBoard{
 	private Cell [][] cells;
 	
@@ -73,6 +75,10 @@ public class Board implements IBoard{
 		}
 	}
 	private void addShipsToBoard(ShipType [] ships, int [] numOfShips) {
+		Random posi = new Random();
+		if(ships.length==numOfShips.length) {
+			
+		}
 		
 	}
 }
