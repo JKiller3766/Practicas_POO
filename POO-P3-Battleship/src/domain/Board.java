@@ -76,7 +76,9 @@ public class Board implements IBoard{
 	}
 	private void addShipsToBoard(ShipType [] ships, int [] numOfShips) {
 		Random posi = new Random();
+		boolean direccion = posi.nextBoolean();
 		if(ships.length==numOfShips.length) {
+			
 			
 		}
 		
