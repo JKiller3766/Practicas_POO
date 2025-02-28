@@ -75,11 +75,44 @@ public class Board implements IBoard{
 		}
 	}
 	private void addShipsToBoard(ShipType [] ships, int [] numOfShips) {
-		Random posi = new Random();
-		boolean direccion = posi.nextBoolean();
+		Random alea = new Random();
+		int direccion, positionX, positionY;
+		boolean freeCells = true;
+		
 		if(ships.length==numOfShips.length) {
+			for(int idx = 0; idx < ships.length; idx++) {
+				direccion = alea.nextInt(0, 2); //0 = horizontal y 1 = vertical
+				if (direccion == 0) {
+					do {
+						positionX = alea.nextInt(0, cells[0].length);
+					} while(positionX + ships[idx].getSize() < cells[0].length);
+					
+					positionY = alea.nextInt(0, cells.length);
+					
+					for (int idx2 = positionX; idx2 < cells[0].length && freeCells; idx2++) {
+						if (!cells[positionY][idx2].isEmpty()) {
+							freeCells = cells[idx2][positionX].isEmpty();
+						}
+					}
+					
+				} else {
+					do {
+						positionY = alea.nextInt(0, cells.length);
+					} while(positionY + ships[idx].getSize() < cells.length);
+					
+					positionX = alea.nextInt(0, cells.length);
+					
+					for (int idx2 = positionY; idx2 < cells[0].length && freeCells; idx2++) {
+						freeCells = cells[idx2][positionX].isEmpty();
+					}
+				}
+				if (freeCells) {
+					//poner barquito
+				}
+			}
 			
 			
+				
 		}
 		
 	}
