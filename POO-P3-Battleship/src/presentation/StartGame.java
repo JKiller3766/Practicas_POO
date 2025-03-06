@@ -42,21 +42,40 @@ public class StartGame {
 		
 		
 		//Perform setup
-		
+		console.println(game.boardToString());
+		sunkShipInfo.println("SUNK SHIP INFO");
+		sunkShipInfo.println("**************");
 		
 		while(!game.hasEnded()) {
 			//Show board
 			
+			
 			//Get user input
+			console.print("\nPlease enter a row (0 - 9) and column (0 - 9) separated by a coma: ");
+			userInput = console.readString();
 			
 			//Parse and validate user input
+			parseAndValidateCoordinates(userInput);
 			
 			//Make move
-			
+			if(game.shootAndHit(coordinates[0], coordinates[1])) {
+				console.setForegroundColor(Color.green);
+				console.print("YOU HIT A SHIP");
+				console.resetColor();
+			}
+			else {
+				console.setForegroundColor(Color.red);
+				console.print("YOU MISSED");
+				console.resetColor();
+			}
 			//Show result (HIT, MISS, SUNK SHIP)
-			
+			console.clear();
+			console.println(game.boardToString());
 			//If ship sunk, show info
-			
+			if(game.hasShipSunk(coordinates[0], coordinates[1])){
+				sunkShipInfo.clear();
+				sunkShipInfo.println(game.sunkShipInfo());
+			}
 
 		}
 
@@ -71,7 +90,17 @@ public class StartGame {
 	//TODO: A l'enunciat, indicar que suposin d'entrada que l'input conté els elements indicats. Ja ho canviarem després.
 	private int[] parseAndValidateCoordinates(String input) { 
 		//TODO: Complete
-		return null;
+		
+		String [] coords;
+		
+		coords = input.split(",");
+		
+		int [] numCoords = new int [coords.length];
+		
+		for(int i = 0; i<numCoords.length; i++) {
+			numCoords[i] = Integer.parseInt(coords[i]);
+		}
+		return numCoords;
 	}
 	
 	private void end() {

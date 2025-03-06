@@ -52,18 +52,19 @@ public class Board implements IBoard{
 		for(int fil = 0;fil<cells.length;fil++) {
 			for(int col = 0;col<cells[fil].length;col++) {
 				if( !(hasCellBeenHit(fil, col)) ) {
-					tauler += "??";
+					tauler += "??  ";
 				}
 				else {
 					if(isCellEmpty(fil, col)) {
-						tauler += "XX";
+						tauler += "XX  ";
 					}
 					else {
-						tauler += "HH";
+						tauler += "HH  ";
 					}
 				}
-				tauler += "  ";
+				
 			}
+			tauler += "\n";
 		}
 		return tauler;
 	}
@@ -107,12 +108,14 @@ public class Board implements IBoard{
 					}
 				}
 				if (freeCells) {
-					//poner barquito
+					for(int i = 0;i<numOfShips[i];i++){
+						Ship ship = new Ship(ships[i]);
+						cells[positionX][positionY] = new OccupiedCell(ship);
+						//poner barquito
+					}
 				}
 			}
-			
-			
-				
+							
 		}
 		
 	}

@@ -57,7 +57,7 @@ public class ShipType {
 		}
 	}
 
-	public ShipType[] getAvailableShipTypes() {
+	public static ShipType[] getAvailableShipTypes() {
 		return availableShipTypes;
 	}
 
