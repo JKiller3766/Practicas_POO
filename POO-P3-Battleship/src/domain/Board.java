@@ -78,10 +78,11 @@ public class Board implements IBoard{
 	private void addShipsToBoard(ShipType [] ships, int [] numOfShips) {
 		Random alea = new Random();
 		int direccion, positionX, positionY;
-		boolean freeCells = true;
+		boolean freeCells;
 		
 		if(ships.length==numOfShips.length) {
 			for(int idx = 0; idx < ships.length; idx++) {
+				freeCells = true;
 				direccion = alea.nextInt(0, 2); //0 = horizontal y 1 = vertical
 				if (direccion == 0) {
 					do {

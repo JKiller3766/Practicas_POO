@@ -1,12 +1,8 @@
 package Pruebas1;
 
 public class pruebas {
-	public void main(String [] args) {
-		JugadorDeLOL xd = new JugadorDeLOL("Didac", 22, "Caca");
-		A(xd);
-	}
-	
-	private void A(JugadorDeLOL p) {
-		System.out.print(p.getNombre());
+	public static void main(String [] args) {
+		asdasd hola = new asdasd();
+		System.out.print(hola);
 	}
 }
