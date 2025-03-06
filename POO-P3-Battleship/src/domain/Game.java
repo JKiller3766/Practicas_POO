@@ -1,5 +1,7 @@
 package domain;
 
+import exceptions.NoShipException;
+
 public class Game {
 	private Board gameBoard;
 
@@ -40,7 +42,7 @@ public class Game {
     public boolean hasShipSunk(int fila, int col) {
         return gameBoard.hasShipSunk(fila, col);
     }
-    public String getShipTypeName(int fila, int col) {
+    public String getShipTypeName(int fila, int col) throws NoShipException{
         return gameBoard.getShipTypeName(fila, col);
     }
     public boolean isCellEmpty(int fila, int col) {

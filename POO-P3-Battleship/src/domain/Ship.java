@@ -60,7 +60,7 @@ public class Ship implements Comparable {
 				return 1;
 			}
 		}
-		return 10; // editar mas adelante
+		throw new ClassCastException(); // editar mas adelante
 	}
 	
 

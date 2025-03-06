@@ -1,5 +1,7 @@
 package domain;
 
+import exceptions.IncompatibleVectorsException;
+
 public class ShipType {
 	private String name;
 	private int size;
@@ -20,6 +22,7 @@ public class ShipType {
 				availableShipTypes[idx] = ship;
 			}
 		}
+		throw new IncompatibleVectorsException ("Vectors amb diferent mida. ");
 	}
 
 	public static void createShipTypes() {

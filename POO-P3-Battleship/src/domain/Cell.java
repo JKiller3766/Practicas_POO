@@ -1,5 +1,7 @@
 package domain;
 
+import exceptions.NoShipException;
+
 public abstract class Cell {
 	private boolean hit;
 	
@@ -14,11 +16,11 @@ public abstract class Cell {
 	public boolean hasShipSunk() {
 		return false;
 	}
-	public String getShipTypeName() {
-		return "";
+	public String getShipTypeName() throws NoShipException {
+		throw new NoShipException("No hi ha cap vaixell disponible");
 	}
-	public Ship getShip() {
-		return null;
+	public Ship getShip() throws NoShipException{
+		throw new NoShipException("No hi ha cap vaixell disponible");
 	}
 	public boolean shoot() {
 		if (hit) {

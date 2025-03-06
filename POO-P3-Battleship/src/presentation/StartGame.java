@@ -22,9 +22,12 @@ public class StartGame {
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int halfWidthGame = (screenWidth)/4;
 		
-
-		game = new Game();
-
+		try {
+		game = new Game();	
+		}		
+		catch(NoShipException e) {
+			console.print(e);
+		}
 
 		console = new JConsole(80,20);
 		sunkShipInfo = new JConsole(40,10);
@@ -55,7 +58,13 @@ public class StartGame {
 			userInput = console.readString();
 			
 			//Parse and validate user input
-			coordinates = parseAndValidateCoordinates(userInput);
+			try {
+				coordinates = parseAndValidateCoordinates(userInput);				
+			}
+			catch(InvalidCoordinatesException e) {
+				console.println(e);
+			}
+			
 			while(coordinates[0]<0 || coordinates[0]>9 || coordinates[1]<0 || coordinates[1]>9) {
 				console.clear();
 				console.println(game.boardToString());
@@ -65,6 +74,7 @@ public class StartGame {
 			}
 			
 			//Make move
+			
 			if(game.shootAndHit(coordinates[0], coordinates[1])) {
 				console.setForegroundColor(Color.green);
 				console.clear();
@@ -104,11 +114,20 @@ public class StartGame {
 		//TODO: Complete
 		String [] coords;
 		coords = input.split(",");
-		int [] numCoords = new int [coords.length];
 		
-		for(int i = 0; i<numCoords.length; i++) {
-			numCoords[i] = Integer.parseInt(coords[i]);
+		int [] numCoords = new int [coords.length];
+		try {
+			for(int i = 0; i<numCoords.length; i++) {
+				numCoords[i] = Integer.parseInt(coords[i]);		
 		}
+			if(coords.length!=2 || numCoords[0] <0 || numCoords[0]>9 || numCoords[1] <0 || numCoords[1]>9 ) {	
+				throw new InvalidCoordinatesException("Les coordenades introduides son incorrectes, han de estar al rang i ser només un número");
+			}
+		}
+		catch(NumberFormatException e) {
+			console.println(e);
+		}
+		
 		return numCoords;
 	}
 	

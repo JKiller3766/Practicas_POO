@@ -2,6 +2,9 @@ package domain;
 
 import java.util.Random;
 
+import exceptions.IncompatibleVectorsException;
+import exceptions.NoShipException;
+
 public class Board implements IBoard{
 	private Cell [][] cells;
 	
@@ -41,10 +44,10 @@ public class Board implements IBoard{
 	public boolean isCellEmpty(int row, int col) {
 		return cells[row][col].isEmpty();
 	}
-	public String getShipTypeName(int row, int col) {
+	public String getShipTypeName(int row, int col) throws NoShipException {
 		return cells[row][col].getShipTypeName(); // no es el nombre bueno
 	}
-	public Ship getShip(int row, int col) {
+	public Ship getShip(int row, int col) throws NoShipException{
 		return cells[row][col].getShip();
 	}
 	public String toString() {
@@ -128,6 +131,7 @@ public class Board implements IBoard{
 			}
 							
 		}
+		throw new IncompatibleVectorsException ("Vectors amb diferent mida. ");
 		
 	}
 }
