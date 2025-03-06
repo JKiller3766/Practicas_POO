@@ -108,10 +108,20 @@ public class Board implements IBoard{
 					}
 				}
 				if (freeCells) {
-					for(int i = 0;i<numOfShips[i];i++){
-						Ship ship = new Ship(ships[i]);
-						cells[positionX][positionY] = new OccupiedCell(ship);
-						//poner barquito
+					while(numOfShips[idx]>0){
+						Ship ship = new Ship(ships[idx]);
+						
+						if(direccion == 0) {
+							for (int idx2 = positionY, tam = ship.getSize(); idx2 < cells[0].length && tam>0 ; idx2++, tam--) {
+								cells[idx2][positionX] = new OccupiedCell(ship);
+							}
+						}
+						else {
+							for (int idx2 = positionX, tam = ship.getSize(); idx2 < cells[0].length && tam>0 ; idx2++, tam--) {
+								cells[positionY][idx2] = new OccupiedCell(ship);
+							}
+						}																
+						numOfShips[idx]--;
 					}
 				}
 			}
