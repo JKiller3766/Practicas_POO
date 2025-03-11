@@ -1,11 +1,10 @@
 package presentation;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import domain.Game;
 
-public class JFrameStartGame extends JFrame implements ActionListener{
+public class JFrameStartGame extends JFrame{
 
 	private Game game;
 	private JButton[][] buttons;
@@ -20,26 +19,31 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 	
 	public JFrameStartGame() {
 		super();
-		mainContentPane = new Container();
-		gridContainer = new Container();
-		buttonContainer = new Container();
 		initComponents();
-		game = new Game();
 	}
 	
 	
 	private void initComponents() {
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		game = new Game();
+		mainContentPane = new Panel();
+		gridContainer = new Container();
+		buttonContainer = new Container();
 		mainContentPane = this.getContentPane();
 		gridContainer.setLayout(new GridLayout(3,3));
 		buttonContainer.setLayout(new FlowLayout());
 		
 		this.setSize(400, 500);
+		this.setLocation(0, 0);
 		gridContainer.setSize(400,400);
+		gridContainer.setLocation(0,400);
+		
 		buttonContainer.setPreferredSize(dim);
 		buttonContainer.setMaximumSize(dim);
 		createButtons();
 		addButtons();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 		this.setVisible(true);
 		gridContainer.setVisible(true);
 		buttonContainer.setVisible(true);
@@ -48,16 +52,10 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 		for(int i = 0; i<gridContainer.getWidth();i++) {
 			for(int j = 0; j<gridContainer.getHeight();j++) {
 				buttons[i][j] = new JButton();
-				buttons[i][j].setForeground(Color.BLUE);
 			}
 		}
-		newGameButton = new JButton();
-		closeButton = new JButton();
-		
-		newGameButton.setToolTipText("New Game");
-		closeButton.setToolTipText("Close");
-		
-		
+		newGameButton = new JButton("New Game");
+		closeButton = new JButton("Close");		
 	}
 	private void addButtons() {
 		this.getContentPane().add(gridContainer, BorderLayout.CENTER);
@@ -68,7 +66,6 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 				gridContainer.add(buttons[i][j]);
 			}
 		}
-		
 		buttonContainer.add(newGameButton, closeButton);
 	}
 }
