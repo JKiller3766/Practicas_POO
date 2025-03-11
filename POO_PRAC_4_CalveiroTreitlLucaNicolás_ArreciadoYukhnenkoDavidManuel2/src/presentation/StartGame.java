@@ -3,6 +3,7 @@ package presentation;
 import java.awt.Color;
 import java.awt.Toolkit;
 
+import domain.Game;
 import jconsole.JConsole;
 
 public class StartGame {

@@ -47,18 +47,11 @@ public class Game {
 		
 	}
 	
-	public String boardToString() {
-		String result = "";
-		for (int i = 0; i < board.getNumRows(); i++) {
-			result = result + "| ";
-			for (int j = 0; j < board.getNumCols(); j++) {
-				
-				result = result + board.getCellContent(i, j) + " | ";
-			}
-			result = result + "\n";
-		}
-		
-		return result;
+	public String boardToString() {	
+		return board.boardToString();
+	}
+	public char getCellContent(int row, int col) {
+		return board.getCellContent(row, col);
 	}
 	
 	public String getEndMessage() {

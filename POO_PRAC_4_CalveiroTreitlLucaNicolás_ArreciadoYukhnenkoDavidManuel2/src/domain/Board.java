@@ -135,5 +135,18 @@ public class Board {
 		
 		return isFull;
 	}
+	public String boardToString() {
+		String result = "";
+		for (int i = 0; i < this.getNumRows(); i++) {
+			result = result + "| ";
+			for (int j = 0; j < this.getNumCols(); j++) {
+				
+				result = result + this.getCellContent(i, j) + " | ";
+			}
+			result = result + "\n";
+		}
+		
+		return result;
+	}
 	
 }
