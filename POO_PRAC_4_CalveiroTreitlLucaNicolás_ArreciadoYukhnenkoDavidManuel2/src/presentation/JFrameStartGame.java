@@ -64,9 +64,8 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 		
 		for(int i = 0; i<buttons.length;i++) {
 			for(int j = 0; j<buttons[i].length;j++) {
-				buttons[i][j] = new JButton();
-				buttons[i][j].setToolTipText(i+""+j);
-				
+				buttons[i][j] = new JButton();	
+				buttons[i][j].addActionListener(this);
 			}
 		}
 		newGameButton = new JButton("New Game");
@@ -118,7 +117,7 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 				for(int i = 0;i<buttons.length; i++) {
 					for(int j = 0; j<buttons[i].length && e.getSource() != buttons[i][j];j++) {
 						if(e.getSource() == buttons[i][j]) {
-							buttons[i][j] = new JButton(); // Preguntar a Victor
+							buttons[i][j].setName(game.getCellContent(i, j)+""); // Preguntar a Victor
 						}
 					}
 				}
