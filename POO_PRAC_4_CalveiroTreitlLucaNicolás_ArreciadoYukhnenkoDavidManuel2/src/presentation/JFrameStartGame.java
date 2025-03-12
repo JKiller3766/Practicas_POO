@@ -36,10 +36,9 @@ public class JFrameStartGame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		game = new Game();
-		mainContentPane = new Panel();
+		mainContentPane = this.getContentPane();
 		gridContainer = new Container();
 		buttonContainer = new Container();
-		mainContentPane = this.getContentPane();
 		gridContainer.setLayout(new GridLayout(3,3));
 		buttonContainer.setLayout(new FlowLayout());
 		
@@ -58,8 +57,9 @@ public class JFrameStartGame extends JFrame{
 		buttonContainer.setVisible(true);
 	}
 	private void createButtons() {
-		for(int i = 0; i<gridContainer.getWidth();i++) {
-			for(int j = 0; j<gridContainer.getHeight();j++) {
+		buttons = new JButton[3][3];
+		for(int i = 0; i<buttons.length;i++) {
+			for(int j = 0; j<buttons[i].length;j++) {
 				buttons[i][j] = new JButton();
 			}
 		}
@@ -70,11 +70,13 @@ public class JFrameStartGame extends JFrame{
 		this.getContentPane().add(gridContainer, BorderLayout.CENTER);
 		this.getContentPane().add(buttonContainer, BorderLayout.SOUTH);
 		
-		for(int i = 0; i<gridContainer.getWidth();i++) {
-			for(int j = 0; j<gridContainer.getHeight();j++) {
+		for(int i = 0; i<buttons.length;i++) {
+			for(int j = 0; j<buttons[i].length;j++) {
 				gridContainer.add(buttons[i][j]);
 			}
 		}
-		buttonContainer.add(newGameButton, closeButton);
+		buttonContainer.add(newGameButton);
+		buttonContainer.add(closeButton);
+		
 	}
 }
