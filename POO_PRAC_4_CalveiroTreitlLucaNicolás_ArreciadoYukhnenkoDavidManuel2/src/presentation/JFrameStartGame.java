@@ -22,7 +22,16 @@ public class JFrameStartGame extends JFrame{
 		initComponents();
 	}
 	
-	
+	public static void main (String []args) {
+		EventQueue.invokeLater(
+			new Runnable() {
+				public void run() {
+					JFrame jf = new JFrameStartGame();
+					jf.setVisible(true);
+				}
+			}
+		);
+	}
 	private void initComponents() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
