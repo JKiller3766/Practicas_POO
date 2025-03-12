@@ -1,10 +1,13 @@
 package presentation;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import domain.Game;
 
-public class JFrameStartGame extends JFrame{
+public class JFrameStartGame extends JFrame implements ActionListener{
 
 	private Game game;
 	private JButton[][] buttons;
@@ -58,13 +61,18 @@ public class JFrameStartGame extends JFrame{
 	}
 	private void createButtons() {
 		buttons = new JButton[3][3];
+		
 		for(int i = 0; i<buttons.length;i++) {
 			for(int j = 0; j<buttons[i].length;j++) {
 				buttons[i][j] = new JButton();
+				buttons[i][j].setToolTipText(i+""+j);
+				
 			}
 		}
 		newGameButton = new JButton("New Game");
+		newGameButton.addActionListener(this);
 		closeButton = new JButton("Close");		
+		closeButton.addActionListener(this);
 	}
 	private void addButtons() {
 		this.getContentPane().add(gridContainer, BorderLayout.CENTER);
@@ -76,7 +84,46 @@ public class JFrameStartGame extends JFrame{
 			}
 		}
 		buttonContainer.add(newGameButton);
-		buttonContainer.add(closeButton);
-		
+		buttonContainer.add(closeButton);	
 	}
+
+	public void actionPerformed(ActionEvent e) {
+		
+		if(game.hasGameEnded()) {
+			if(e.getSource() == closeButton) {
+				System.exit(0);
+			}
+			
+			else if(e.getSource() == newGameButton) {
+				game = new Game();
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "La partida ja ha acabat, no pots interactuar amb el tauler","Partida acabada",JOptionPane.ERROR_MESSAGE);
+			}
+			
+		}
+		else {
+			if(e.getSource() == closeButton) {
+				if(JOptionPane.showConfirmDialog(this,"El joc encara no ha acabat, estas segur que vols sortir?","Sortir",JOptionPane.YES_NO_OPTION)==0) {
+					System.exit(0);
+				}
+			}
+			
+			else if(e.getSource() == newGameButton) {
+				if(JOptionPane.showConfirmDialog(this,"La partida encara esta en joc, estas segur que vols començar de nou?","Nova partida",JOptionPane.YES_NO_OPTION)==0) {
+					game = new Game();
+				}
+			}
+			else {
+				for(int i = 0;i<buttons.length; i++) {
+					for(int j = 0; j<buttons[i].length && e.getSource() != buttons[i][j];j++) {
+						if(e.getSource() == buttons[i][j]) {
+							buttons[i][j] = new JButton(); // Preguntar a Victor
+						}
+					}
+				}
+			}
+		}
+	}
+	
 }
