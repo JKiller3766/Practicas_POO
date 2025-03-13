@@ -124,10 +124,15 @@ public class JFrameStartGame extends JFrame implements ActionListener {
 				if (game.move(row, col)) {
 					buttons[row][col].setText(game.getCellContent(row, col) + "");
 				}
+				else if(buttons[row][col].getText() != "") {
+					JOptionPane.showMessageDialog(this, "La casella ja esta ocupada, selecciona una lliure",
+							"Casella ocupada", JOptionPane.ERROR_MESSAGE);
+				}
 				if (game.hasGameEnded()) {
 					JOptionPane.showMessageDialog(this, "¡Game ended! " + game.getEndMessage(), "Fin del juego",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
+				
 			}
 		}
 	}
