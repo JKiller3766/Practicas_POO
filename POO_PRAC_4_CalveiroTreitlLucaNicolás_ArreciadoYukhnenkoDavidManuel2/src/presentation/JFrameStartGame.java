@@ -39,6 +39,8 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		game = new Game();
+		buttons = new JButton[3][3];
+		
 		mainContentPane = this.getContentPane();
 		gridContainer = new Container();
 		buttonContainer = new Container();
@@ -56,15 +58,13 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 		addButtons();
 		
 		this.setVisible(true);
-		gridContainer.setVisible(true);
-		buttonContainer.setVisible(true);
 	}
 	private void createButtons() {
-		buttons = new JButton[3][3];
 		
 		for(int i = 0; i<buttons.length;i++) {
 			for(int j = 0; j<buttons[i].length;j++) {
-				buttons[i][j] = new JButton();	
+				buttons[i][j] = new JButton();
+				buttons[i][j].setName(i + "," + j);
 				buttons[i][j].addActionListener(this);
 			}
 		}
@@ -87,7 +87,7 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+		String[] positionButton;
 		if(game.hasGameEnded()) {
 			if(e.getSource() == closeButton) {
 				System.exit(0);
@@ -95,6 +95,7 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 			
 			else if(e.getSource() == newGameButton) {
 				game = new Game();
+				resetButtons();
 			}
 			else {
 				JOptionPane.showMessageDialog(this, "La partida ja ha acabat, no pots interactuar amb el tauler","Partida acabada",JOptionPane.ERROR_MESSAGE);
@@ -111,18 +112,28 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 			else if(e.getSource() == newGameButton) {
 				if(JOptionPane.showConfirmDialog(this,"La partida encara esta en joc, estas segur que vols començar de nou?","Nova partida",JOptionPane.YES_NO_OPTION)==0) {
 					game = new Game();
+					resetButtons();
 				}
 			}
 			else {
-				for(int i = 0;i<buttons.length; i++) {
-					for(int j = 0; j<buttons[i].length && e.getSource() != buttons[i][j];j++) {
-						if(e.getSource() == buttons[i][j]) {
-							buttons[i][j].setName(game.getCellContent(i, j)+""); // Preguntar a Victor
-						}
-					}
+				positionButton = ((JButton)e.getSource()).getName().split(",");
+		        int row = Integer.parseInt(positionButton[0]);
+		        int col = Integer.parseInt(positionButton[1]);
+		        if (game.move(row, col)) {
+		            buttons[row][col].setText(game.getCellContent(row, col) + "");
 				}
+		        if (game.hasGameEnded()) {
+	                JOptionPane.showMessageDialog(this, "¡Game ended! " + game.getEndMessage(),"Fin del juego", JOptionPane.INFORMATION_MESSAGE);
+	            }
 			}
 		}
 	}
 	
+	private void resetButtons() {
+        for (int i = 0; i<buttons.length;i++) {
+            for (int j = 0;j<buttons[i].length;j++) {
+                buttons[i][j].setText("");
+            }
+        }
+    }
 }
