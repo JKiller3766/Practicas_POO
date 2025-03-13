@@ -35,6 +35,7 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 			}
 		);
 	}
+	
 	private void initComponents() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -59,6 +60,7 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 		
 		this.setVisible(true);
 	}
+	
 	private void createButtons() {
 		
 		for(int i = 0; i<buttons.length;i++) {
@@ -73,6 +75,7 @@ public class JFrameStartGame extends JFrame implements ActionListener{
 		closeButton = new JButton("Close");		
 		closeButton.addActionListener(this);
 	}
+	
 	private void addButtons() {
 		this.getContentPane().add(gridContainer, BorderLayout.CENTER);
 		this.getContentPane().add(buttonContainer, BorderLayout.SOUTH);
