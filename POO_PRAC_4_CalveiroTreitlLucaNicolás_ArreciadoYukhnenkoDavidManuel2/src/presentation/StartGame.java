@@ -29,7 +29,7 @@ public class StartGame {
 		//Additional vars
 		//TODO: Add more variables here if you need them
 		Game currentGame = new Game();
-		int [] coordinates = new int[2];
+		int [] coordinates;
 		//Console positioning, AVOID CHANGING
 		gameConsole.setLocation(halfWidthGame,10);
 		userInput.setLocation(halfWidthGame,halfHeightPlayer);

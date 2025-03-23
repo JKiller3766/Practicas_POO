@@ -38,18 +38,16 @@ public class JFrameStartGame extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		game = new Game();
-		buttons = new JButton[3][3];
+		buttons = new JButton[game.getBoardRows()][game.getBoardCols()];
 
 		mainContentPane = this.getContentPane();
 		gridContainer = new Container();
 		buttonContainer = new Container();
-		gridContainer.setLayout(new GridLayout(3, 3));
+		gridContainer.setLayout(new GridLayout(buttons.length, buttons[0].length));
 		buttonContainer.setLayout(new FlowLayout());
 
 		this.setSize(400, 500);
-		this.setLocation(0, 0);
 		gridContainer.setSize(400, 400);
-		gridContainer.setLocation(0, 400);
 
 		buttonContainer.setPreferredSize(dim);
 		buttonContainer.setMaximumSize(dim);
@@ -75,8 +73,8 @@ public class JFrameStartGame extends JFrame implements ActionListener {
 	}
 
 	private void addButtons() {
-		this.getContentPane().add(gridContainer, BorderLayout.CENTER);
-		this.getContentPane().add(buttonContainer, BorderLayout.SOUTH);
+		mainContentPane.add(gridContainer, BorderLayout.CENTER);
+		mainContentPane.add(buttonContainer, BorderLayout.SOUTH);
 
 		for (int i = 0; i < buttons.length; i++) {
 			for (int j = 0; j < buttons[i].length; j++) {
@@ -89,6 +87,8 @@ public class JFrameStartGame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		String[] positionButton;
+		int row;
+		int col;
 		if (game.hasGameEnded()) {
 			if (e.getSource() == closeButton) {
 				System.exit(0);
@@ -102,29 +102,30 @@ public class JFrameStartGame extends JFrame implements ActionListener {
 						"Partida acabada", JOptionPane.ERROR_MESSAGE);
 			}
 
-		} else {
+		} 
+		
+		else {
 			if (e.getSource() == closeButton) {
-				if (JOptionPane.showConfirmDialog(this, "El joc encara no ha acabat, estas segur que vols sortir?",
-						"Sortir", JOptionPane.YES_NO_OPTION) == 0) {
+				if (JOptionPane.showConfirmDialog(this, "El joc encara no ha acabat, estas segur que vols sortir?","Sortir", JOptionPane.YES_NO_OPTION) == 0) {
 					System.exit(0);
 				}
 			}
 
 			else if (e.getSource() == newGameButton) {
-				if (JOptionPane.showConfirmDialog(this,
-						"La partida encara esta en joc, estas segur que vols començar de nou?", "Nova partida",
-						JOptionPane.YES_NO_OPTION) == 0) {
+				if (JOptionPane.showConfirmDialog(this,"La partida encara esta en joc, estas segur que vols començar de nou?", "Nova partida", JOptionPane.YES_NO_OPTION) == 0) {
 					game = new Game();
 					resetButtons();
 				}
-			} else {
+			} 
+			
+			else {
 				positionButton = ((JButton) e.getSource()).getName().split(",");
-				int row = Integer.parseInt(positionButton[0]);
-				int col = Integer.parseInt(positionButton[1]);
+				row = Integer.parseInt(positionButton[0]);
+				col = Integer.parseInt(positionButton[1]);
 				if (game.move(row, col)) {
 					buttons[row][col].setText(game.getCellContent(row, col) + "");
 				}
-				else if(buttons[row][col].getText() != "") {
+				else{
 					JOptionPane.showMessageDialog(this, "La casella ja esta ocupada, selecciona una lliure",
 							"Casella ocupada", JOptionPane.ERROR_MESSAGE);
 				}
